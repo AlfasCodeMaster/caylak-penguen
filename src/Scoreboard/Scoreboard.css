@@ -1,0 +1,35 @@
+.barChartMain{
+    min-height: 100vh;
+    width: 100%;
+    background-size: cover;
+    position: relative; /* Make sure the container is positioned */
+    width: 100%; /* Set the desired width */
+    height: 400px; /* Set the desired height */
+    overflow-x: hidden;
+    background-color: rgba(0, 0, 0, 0.35);
+    
+}
+
+.barChartMain::before{
+  background-image: url('/public/images/challengesBG.jpg');
+    min-height: 100vh;
+    width: 100%;
+    background-attachment: fixed; /* Adjust to your needs */
+    position: fixed;
+    background-size: cover;
+  content: "";
+    z-index: -1;
+
+}
+
+.bar{
+    width: 70vw;
+    height: 70vh;
+}
+
+.barContainer{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,355 @@
+{
+    "challenges": [
+        {
+            "category":"Kriptografi",
+            "challengeName": "Kriptografiye Hoş Geldiniz!",
+            "challengeDesc": "Kriptografi, bilgiyi yalnızca mesajın gönderildiği kişinin okuyabileceği şekilde gizleme veya kodlama işlemidir. Fakat biliyorsunuz ki hiçbir bilgi tamamen gizli değildir :)\n\nVElNVEFMPXtINFoxUjVBTl9CNDVMMVk0TCFNMSExfQ==",
+            "challangeGain": "Temel şifreleme algoritmalarını deşifre eder.",
+            "flag": "TIMTAL={H4Z1R5AN_B45L1Y4L!M1!1}",
+            "points": {
+                "$numberInt": "10"
+            },
+            "hintUnlocked":false,
+            "hint":"Base 64",
+            "difficulty":"Kolay",
+            "fails": {
+                "$numberInt": "0"
+            },
+            "keywords":"Base **",
+            "unlocked": true,
+            "completed": false,
+            "unlocks": [
+                {
+                    "$numberInt": "3"
+                }
+            ]
+        },
+        {
+            "category":"Web",
+            "challengeName": "Web Açıklarına Hoş Geldiniz!",
+            "challengeDesc": "Web açıkları, web uygulamalarında bulunan açıklardır. Belki geliştirici bir yerlere açık oluşturabilecek bir yorum bırakmıştır. ",
+            "challangeGain": "Kaynak kodu yorumlarını bulur ve kullanır.",
+            "flag": "TIMTAL={W€B_4Ç1KL4R!}",
+            "points": {
+                "$numberInt": "10"
+            },
+            "hintUnlocked":false,
+            "hint":"CTRL + SHIFT + I",
+"difficulty":"Kolay",
+            "fails": {
+                "$numberInt": "0"
+            },
+            "keywords":"İncele",
+            "unlocked": true,
+            "completed": false,
+            "unlocks": [
+                {
+                    "$numberInt": "4"
+                }
+            ]
+        },
+        {
+            "category":"OSINT",
+            "challengeName": "OSINT'e hoş geldin!",
+            "challengeDesc": "Açık kaynak istihbaratı (OSINT) genellikle kamu kaynakları veya halka açık kaynaklardan elde edilen verilerin toplanması, analizi ve değerlendirilmesi yoluyla elde edilen bilgiye dayalı istihbarat türüdür. Bu tarz CTF soruları aslında sizden istedikleri hedefe ya da verdikleri bilgiler doğrultusunda stalk yapmanızı istiyor denebilir. O zaman başlayalım! Bizim Gezgin Memoş internete açılmış diye duydum. Bakalım yine ne karıştırıyor.",
+            "challangeGain": "İnternetten kişileri bulur.",
+            "flag": "TIMTAL={https://twitter.com/GezginMemos}",
+            "points": {
+                "$numberInt": "50"
+            },
+            "hint":"Twitter",
+"hintUnlocked":false,
+"difficulty":"Kolay",
+            "fails": {
+                "$numberInt": "0"
+            },
+            "keywords":"Sosyal Medya",
+            "unlocked": true,
+            "completed": false,
+            "unlocks": [
+                {
+                    "$numberInt": "5"
+                }
+            ]
+        },
+        {
+            "category":"Kriptografi",
+            "challengeName": "Beynim Dondu!",
+            "challengeDesc": "Arkadaşım atacağı koda ne yazdığını bulamayacağımı söyledi. Bahse girdik ve attığı mesaj sadece buydu. Sanırsam kaybedeceğim. Bu nasıl kod! Beynim gitti.\n\n++++++++++[>+>+++>+++++++>++++++++++<<<<-]>>>++++++++++++++.-----------.++++.+++++++.-------------------.+++++++++++.---------------.>+++++++++++++++++++++++.<++++++.<++++++++++++++++++.>++++++++.++++++++++++++++++++.-----.<.>--------.------.<++++.>++.-.<.>---------.+++++.+++++.+++++++++++++++++.----------.--------.<.>+++++.<---.>-----.++++++++++++++++++.<+++++++++.++++++++++.>>++.",
+            "challangeGain": "Programlama dillerini anlar ve çalıştırır.",
+            "flag": "TIMTAL={C0K_Z0RL4NM4DIN_UM4R1M_:D}",
+            "difficulty":"Orta",
+            "points": {
+                "$numberInt": "50"
+            },
+            "fails": {
+                "$numberInt": "0"
+            },
+            "hint":"Ezoterik programlama dillerini araştır.",
+"hintUnlocked":false,
+            "keywords":"Ezoterik",
+            "unlocked": false,
+            "completed": false,
+            "unlocks": [
+                {
+                    "$numberInt": "6"
+                }
+            ]
+        },
+        {
+            "category":"Web",
+            "challengeName": "İzle ve Öğren!",
+            "challengeDesc": "Siteler genellikle veritabanı ile olan işlemlerini güvenlik sebeplerinden dolayı bir API üzerinden yapar. Bazen API isteğinde kritik bilgiler bulunabilir.",
+            "challangeGain": "Site ağ trafiğini izler ve bilgi toplar.",
+            "flag": "TIMTAL={AG_V€R!51N3_D1KK4T}",
+            "difficulty":"Orta",
+            "points": {
+                "$numberInt": "60"
+            },
+            "hint":"Ağ sekmesi",
+"hintUnlocked":false,
+            "fails": {
+                "$numberInt": "0"
+            },
+            "keywords":"Header",
+            "unlocked": false,
+            "completed": false,
+            "unlocks": [
+                {
+                    "$numberInt": "7"
+                }
+            ]
+        },
+        {
+            "category":"OSINT",
+            "challengeName": "Nerelerde bizim gezgin",
+            "challengeDesc": "Bizim Memoş da hiç bişi anlatmıyor. Ya bindiği teleferik düşse biz onu hangi ilde arayacağız?",
+            "challangeGain": "Fotoğraflardan konum tespiti yapar.",
+            "flag": "TİMTAL={ANKARA}",
+            "difficulty":"Orta",
+            "points": {
+                "$numberInt": "100"
+            },
+            "hint":"Teleferik olan şehirlere bak.",
+"hintUnlocked":false,
+            "fails": {
+                "$numberInt": "0"
+            },
+            "keywords":"Google Resimler",
+            "unlocked": false,
+            "completed": false,
+            "unlocks": [
+                {
+                    "$numberInt": "8"
+                }
+            ]
+        },
+        {
+            "category":"Kriptografi",
+            "challengeName": "Soğansız Menemen",
+            "challengeDesc": "Menemen için oda arkadaşımdan soğan istedim ama bana sadece bunu attı:\nJJFEMRKRKJFVMS2KIZKVSUZSGJEVURCFJ5KVUU2HJJCVKVKTGJLEUTSLKRCVMQ2MJJFEGRSNKZFVKSSOIRKVKTSLJRFVURCVGJKTETKKJJDEKSKSKNHEWSSGKZGVGS2PJJJEGVSPKRJUYSSCIZLEKUJSK5FEMR2WI5JTES2KLJBUKS2NKNLUWTSHIVKVOU2DJNNEUVSJKEZEYSSKJBCVOVSTJRFVURSWI5JVUVSJLJFVKV2UKNKEWVSEKVKVGS2GJNLEQRKTKBET2===",
+            "challangeGain": "Şifrelenmiş metinleri çözer.",
+            "flag": "TIMTAL={G1T_K3ND1N_4L}",
+            "difficulty":"Orta",
+            "points": {
+                "$numberInt": "50"
+            },
+            "hint":"Base 64'ün küçük kardeşidir bu algoritma",
+"hintUnlocked":false,
+            "fails": {
+                "$numberInt": "0"
+            },
+            "keywords":"Üst üste şifreleme",
+            "unlocked": false,
+            "completed": false,
+            "unlocks": [
+                {
+                    "$numberInt": "13"
+                }
+            ]
+        },
+        {
+            "category":"Linux Terminali",
+            "challengeName": "Seviye 1",
+            "challengeDesc": "Arkadaşım bana Linux terminaline benzeyen bir site gönderdi. Bakalım çözebilecek miyim? Site Linki: http://213.238.183.63/~timtalctf/terminal/ KULLANILACAK KOMUTLAR='cat, ls, cd'",
+            "challangeGain": "Linux terminalinde temel dosya sisteminde gezme ve okuma komutlarını kullanır.",
+            "flag": "TIMTAL={L1NUX_TERMINAL_G0!}",
+            "difficulty":"Kolay",
+            "points": {
+                "$numberInt": "70"
+            },
+            "hint":"ls ile dosyaları listeler cat ile de okursun",
+            "hintUnlocked":false,
+            "fails": {
+                "$numberInt": "0"
+            },
+            "keywords":"Listeleme, okuma",
+            "unlocked": true,
+            "completed": false,
+            "unlocks": [
+                {
+                    "$numberInt": "9"
+                }
+            ]
+        },
+        {
+            "category":"OSINT",
+            "challengeName": "Keşke benim olsa...",
+            "challengeDesc": "O fotoğraftaki resim ne güzel ya. Acaba hangi Han'da görmüş? Bizim Memoş'a da sorsam söylemez.",
+            "challangeGain": "Fotoğraflardan konum tespiti yapar.",
+            "flag": "TİMTAL={BURSA_BALİBEY_HAN}",
+            "difficulty":"Zor",
+            "points": {
+                "$numberInt": "150"
+            },
+            "hint":"Bursaya git.",
+            "hintUnlocked":false,
+            "fails": {
+                "$numberInt": "0"
+            },
+            "keywords":"Harita",
+            "unlocked": false,
+            "completed": false,
+            "unlocks": [
+                {
+                    "$numberInt": "10"
+                }
+            ]
+        },
+        {
+            "category":"Linux Terminali",
+            "challengeName": "Seviye 2",
+            "challengeDesc": "Seviye 2 KULLANILACAK KOMUTLAR:'ls,cat'",
+            "challangeGain": "Terminalde gizli dosyaları bulur.",
+            "flag": "TIMTAL={H1DD3N_F!L€S}",
+            "difficulty":"Orta",
+            "points": {
+                "$numberInt": "80"
+            },
+            "hint":"ls komutuna bir parametre girmen gerekiyor",
+            "hintUnlocked":false,
+            "fails": {
+                "$numberInt": "0"
+            },
+            "keywords":"ls",
+            "unlocked": false,
+            "completed": false,
+            "unlocks": [
+                {
+                    "$numberInt": "11"
+                }
+            ]
+        },
+        {
+            "category":"OSINT",
+            "challengeName": "Sen de izledin mi?",
+            "challengeDesc": "Güzel bir film. Bizi Memoş'un gezmek dışında hobileri olduğunu bilmiyordum :D",
+            "challangeGain": "Eski içerikleri araştırır.",
+            "flag": "TIMTAL={4R51V_C4ND1R_G3R151_H3Y3C4ND1R!1!}",
+            "difficulty":"Ruh Emici",
+            "points": {
+                "$numberInt": "200"
+            },
+            "hint":"Wayback Machineı duydun mu?",
+            "hintUnlocked":false,
+            "fails": {
+                "$numberInt": "0"
+            },
+            "keywords":"Arşiv",
+            "unlocked": false,
+            "completed": false,
+            "unlocks": [
+                {
+                    "$numberInt": "12"
+                }
+            ]
+        },
+        {
+            "category":"Linux Terminali",
+            "challengeName": "Seviye 3",
+            "challengeDesc": "Seviye 3 KULLANILACAK KOMUTLAR:'ls, cat'",
+            "challangeGain": "Özel karakter bulunduran dosyaları okur.",
+            "flag": "TIMTAL={S€4RCH_P4R4M€TERS}",
+            "difficulty":"Zor",
+            "points": {
+                "$numberInt": "100"
+            },
+            "hint":"cat komutuna bir parametre girmelisin",
+            "hintUnlocked":false,
+            "fails": {
+                "$numberInt": "0"
+            },
+            "keywords":"cat",
+            "unlocked": false,
+            "completed": false,
+            "unlocks": []
+        },
+        {
+            "category":"OSINT",
+            "challengeName": " Bulabilir misin? ",
+            "challengeDesc": " Bir Router'ın fiziksel adresinin sadece ilk 6 karakteri elimizde. Tüm bildiğimiz bu: 88:44:77 FLAG FORMATI TIMTAL={MARKA_KULLANICIADI_ŞİFRE}",
+            "challangeGain": "MAC adreslerinden cihazların üretici bilgilerini bulur.",
+            "flag": "TIMTAL={HUAWEİ_ADMİN_ADMİN}",
+            "difficulty":"Orta",
+            "points": {
+                "$numberInt": "200"
+            },
+            "hint":"https://www.macvendorlookup.com/",
+            "hintUnlocked":false,
+            "fails": {
+                "$numberInt": "0"
+            },
+            "keywords":"Google",
+            "unlocked": false,
+            "completed": false,
+            "unlocks": []
+        },
+        {
+            "category":"OSINT",
+            "challengeName": "Video",
+            "challengeDesc": "Kağıdın arkasına kimsenin bakmadığına inanamıyorum. Çok ayıp! 00101111 01110011 01101000 01101111 01110010 01110100 01110011 00101111 01100111 01010001 01100100 00111001 01110011 01110011 01011010 01101101 01101010 01010111 01010001",
+            "challangeGain": "Medya kaynaklarındaki metinleri tespit eder ve okur.",
+            "flag": "TIMTAL={SİBER_VATAN_İÇİN_SEN_DE_ARAMIZA_KATIL_GELDİĞİNDE_GÖRÜŞÜRÜZ}",
+            "difficulty":"Zor",
+            "points": {
+                "$numberInt": "100"
+            },
+            "hint":"Eski türk alfabesiyle yazılı bir metin var.",
+            "hintUnlocked":false,
+            "fails": {
+                "$numberInt": "0"
+            },
+            "keywords":"Türkçe",
+            "unlocked": false,
+            "completed": false,
+            "unlockDate": {
+          "$date": "2024-12-31T22:00:00.000Z"
+        },
+        "completeDate": {
+          "$date": "2024-12-31T22:00:00.000Z"
+        },
+            "unlocks": []
+        }
+    ],
+    "userID": {
+        "$numberInt": "28"
+    }
+}
+
+{"challenges":[
+    {"solCount":0,"solvers":[]},
+    {"solCount":0,"solvers":[]},
+    {"solCount":0,"solvers":[]},
+    {"solCount":0,"solvers":[]},
+    {"solCount":0,"solvers":[]},
+    {"solCount":0,"solvers":[]},
+    {"solCount":0,"solvers":[]},
+    {"solCount":0,"solvers":[]},
+    {"solCount":0,"solvers":[]},
+    {"solCount":0,"solvers":[]},
+    {"solCount":0,"solvers":[]},
+    {"solCount":0,"solvers":[]},
+    {"solCount":0,"solvers":[]},
+    {"solCount":0,"solvers":[]},
+
+]}

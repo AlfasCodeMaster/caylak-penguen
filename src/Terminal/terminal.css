@@ -1,0 +1,58 @@
+#input{
+    position: absolute;
+    top: calc(100% - 39px);
+    background-color: rgba(0, 0, 0, .3);
+    box-shadow: 0px 0px 20px #a5dfdb;
+    color:gainsboro
+}
+#input > .commandInput{
+    max-width:100vmax;
+    width: 100vw;
+    color: gainsboro;
+    background-color: rgba(0, 0, 0,.3);
+    border:none;
+    border-left: 1px solid #689592;
+    
+}
+#input > .commandInput:focus-within{
+    outline: none;
+    border:none;
+    border-top: none;
+}
+#commandLog{
+    position: absolute;
+    bottom: 25px;
+    left: 0;
+    z-index: 1;
+    list-style-type: none;
+    padding-left: 0;
+    color:gainsboro
+}
+#input > pre{
+    width: fit-content
+}
+
+#terminalBG{
+    min-height: 100vh;
+    width: 100%;
+    background-size: cover;
+    position: relative; /* Make sure the container is positioned */
+    width: 100%; /* Set the desired width */
+    height: 400px; /* Set the desired height */
+    overflow-x: hidden;
+    background-color: rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+}
+
+#terminalBG::before{
+  background-image: url('/public/images/challengesBG.jpg');
+    min-height: 100vh;
+    width: 100%;
+    background-attachment: fixed; /* Adjust to your needs */
+    position: fixed;
+    background-size: cover;
+  content: "";
+    z-index: -1;
+    
+
+}

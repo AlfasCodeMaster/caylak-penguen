@@ -1,0 +1,233 @@
+.challengeModalMain {
+  visibility: hidden;
+  opacity: 0;
+  width: 100vw;
+  top: 10vh;
+  right: 0;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  z-index: 10;
+}
+@keyframes fadeOut {
+  0% {
+    visibility: visible;
+    opacity: 1;
+  }
+  100% {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+.modalCard{
+    visibility: hidden;
+  opacity: 0;
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-self: center;
+  position: fixed;
+  top:25vh;
+  transform: scale(1);
+  height:auto;
+  left:35vw;
+  transition: all .5s;
+  z-index: 11;
+    border: 1px solid #a5dfdb;
+    box-shadow: #a5dfdb 0px 0px 20px;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.95);
+}
+.active {
+    visibility: visible;
+    transition: opacity 0.5s;
+    opacity: 1;
+    animation: none;
+    
+  }
+
+.modalCard.active{
+  visibility: visible;
+    transition: all 0.4s;
+  transform: scale(1.2);
+    opacity: 1;
+    top:30vh;
+    animation: none;
+}
+.modal-header{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  border-bottom: 2px solid #a5dfdb;
+}
+
+.modal-body{
+  font-size: small;
+  height: auto;
+}
+.modal-flag{
+  min-height: 10px;
+  width: 100%;
+  border-top: 1px solid #a5dfdb;
+}
+.modalChallengeName{
+  color:white;
+  font-size: x-large;
+  font-weight: 500;
+  margin: 10px 0px 10px 0px;
+}
+.modalChallengePoints{
+  margin: 0px 0px 10px 0px;
+  color: white;
+}
+.modalChallengePoints::after{
+  content:" Puan"
+}
+.modalDesc{
+  color: white;
+  padding: 10px 20px;
+  overflow-wrap: break-word;
+  
+}
+.button-group{
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  margin: 0 auto;
+  padding-top: calc(6vh - 35px);
+}
+.flagInput{
+  width: 80%;
+  display:inline-block ;
+  height: 30px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.flagInput::placeholder{
+  font-size: 1rem;
+  margin: 1rem;
+}
+button.flagSubmit {
+  transition: box-shadow 0.2s;
+  outline: none;
+  width: 20%;
+  padding-right: 6%;
+  height: 34px;
+  border: 1px solid #5d7f7d;
+  background-color: rgba(0, 0, 0.3);
+  border-radius: 20px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  color: white;
+  padding-left: 10px;
+}
+button.flagSubmit::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+button.flagSubmit:focus {
+  transition: box-shadow 0.2s;
+  border: 1px solid #a5dfdb;
+  box-shadow: 0px 0px 20px #9ff6f0;
+}
+button.flagSubmit:hover {
+  box-shadow: 0px 0px 20px #9ff6f0;
+  transition: box-shadow 0.2s;
+}
+.wrongAnswer{
+  color: red;
+  width: 100%;
+  text-align: center;
+  margin-top: 0;
+}
+.gaintooltip{
+  transition:all 250ms linear;
+  position: absolute;
+  border: 1px solid #a5dfdb;
+  background-color: black;
+  border-radius: 20px;
+  padding: 8px;
+  margin-top: -3.2rem;
+  height: 1rem;
+  overflow-wrap: none;
+  white-space: nowrap;
+}
+.gainContainer{
+  position: fixed;
+  right: 8px;
+  top:8px
+}
+.failtooltip{
+  transition:all 250ms linear;
+  position: absolute;
+  border: 1px solid #a5dfdb;
+  background-color: black;
+  border-radius: 20px;
+  padding: 8px;
+  margin-top: calc(-3.2rem - 24px);
+  height: 1rem;
+  overflow-wrap: none;
+  white-space: nowrap;
+}
+.failContainer{
+  position: fixed;
+  right: 8px;
+  top:32px
+}
+.soltooltip{
+  transition:all 250ms linear;
+  position: absolute;
+  border: 1px solid #a5dfdb;
+  background-color: black;
+  border-radius: 20px;
+  padding: 8px;
+  margin-top: calc(-3.2rem - 48px);
+  height: 1rem;
+  overflow-wrap: none;
+  white-space: nowrap;
+}
+.solContainer{
+  position: fixed;
+  right: 8px;
+  top:56px
+}
+.tooltiptext{
+  color: white;
+  margin-top: -0.1rem;
+  word-break: keep-all;
+  overflow-wrap: none;
+}
+.keywords{
+  color: grey;
+  text-align: center;
+}
+.hintContainer{
+  position: fixed;
+  left: 8px;
+  top:8px
+}
+.hint-buy{
+    margin: 4px;
+    border: 1px solid #86b5b2;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    padding:4px;
+}
+.hint-buy:hover{
+  box-shadow: 0px 0px 20px #a5dfdb;
+}
+.hint{
+    border: 1px solid #86b5b2;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    padding:4px;
+    white-space:none;
+    font-size: small;
+    margin-top: -3rem;
+}

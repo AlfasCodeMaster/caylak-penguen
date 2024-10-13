@@ -1,0 +1,112 @@
+#navMain {
+  width: 100vw;
+  height: 6rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+  position: fixed;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#background-glint {
+  width: 90px;
+  height: 50px;
+  background: radial-gradient(
+    circle,
+    #6b928f 0%,
+    transparent 100%
+  ); /* Circular red gradient */
+  filter: blur(15px);
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.8; /* Adjust opacity to control brightness */
+  pointer-events: none; /* Ensure the glint doesn't interfere with mouse events */
+  transform: translate(-50%, -50%);
+  animation: glint 2s linear infinite alternate; /* Make it flicker like a star */
+  z-index: 1;
+}
+
+@keyframes glint {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2); /* Increase size at mid-point */
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes glintOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes glintIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.navLink {
+  color: white;
+  padding: 0 15px;
+  height: 3rem;
+  margin-top: 1.5rem;
+  text-decoration: none;
+  font-size: normal;
+  display: flex;
+  justify-content: center; /* Horizontal alignment */
+  align-items: center;
+  border-radius: 10px;
+}
+.navLink:hover {
+  box-shadow: #638785 0px 0px 10px;
+}
+#navLinkContainer {
+  display: flex;
+  gap: 2rem;
+}
+.navBrand {
+  background: linear-gradient(90deg, #87bab6 0%, #577471 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 2.5rem;
+  margin: 1.5rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center; /* Horizontal alignment */
+  align-items: center;
+}
+.navLinkButton {
+  color: white;
+  background-color: transparent;
+  border: 0;
+  height: 3rem;
+  margin-top: 1.5rem;
+  margin-right: 1rem;
+  text-decoration: none;
+  font-size: larger;
+  display: flex;
+  justify-content: center; /* Horizontal alignment */
+  align-items: center;
+  border-radius: 10px;
+}
+.navLinkButton:hover {
+  box-shadow: #85b3af 0px 0px 10px;
+}
+.logout{
+  background-image: url("/public/icons/logout.png");
+  height: 70px;
+  width: 60px;
+  color: white;
+}

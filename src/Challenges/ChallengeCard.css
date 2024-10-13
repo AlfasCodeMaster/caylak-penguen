@@ -1,0 +1,61 @@
+.challenge-card-body{
+    padding: 4px;
+    width: 350px;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    border-radius: 40px;
+    border: 1px solid #a5dfdb
+}
+
+@keyframes glow {
+    0%{
+        box-shadow: #a7e6e8 0px 0px 10px;
+    }
+    50%{
+        box-shadow: #a7e6e8 0px 0px 40px;
+    }
+    100%{
+        box-shadow: #a7e6e8 0px 0px 10px;
+    }
+}
+
+.challenge-card-top{
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+    height: 170px;
+}
+.challenge-card-top[isDisabled="true"]{
+    pointer-events: none;
+}
+.challenge-card-top[isDisabled="false"]{
+    pointer-events: all;
+    transition: background-color .2s;
+    background-color:rgba(156, 242, 243, 0.1)
+}
+.point{
+    font-size: larger;
+    color: white;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+.challenge-name{
+    color:white;
+    font-size: x-large;
+    line-height: 2rem;
+    text-align: center;
+    margin-top: 0;
+}
+
+.challenge-category{
+    padding-bottom: 8px;
+    color:gainsboro;
+    font-size: normal;
+    text-align: center;
+    margin-bottom: 0;
+}
