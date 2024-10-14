@@ -64,24 +64,6 @@ function Navbar() {
     };
   }
   }, []);
-  const handleMouseOut = () => {
-    const glint = document.getElementById("background-glint");
-    glint.style.animation = "glintOut .5s linear";
-    setTimeout(() => [(glint.style.opacity = "0")], 500);
-  };
-  const handleMouseIn = () => {
-    const glint = document.getElementById("background-glint");
-    glint.style.animation = "glintIn .5s linear";
-    setTimeout(() => {
-      glint.style.opacity = "1";
-      glint.style.animation = "glint 2s linear infinite alternate";
-    }, 500);
-  };
-  const handleGlint = (e) => {
-    const glint = document.getElementById("background-glint");
-    glint.style.left = `${e.clientX}px`;
-    glint.style.top = `${e.clientY}px`;
-  };
   const logout = () => {
     sessionStorage.removeItem('token')
     document.location ='/'
@@ -90,11 +72,7 @@ function Navbar() {
     <div
       id="navMain"
       style={{ padding: "0px" }}
-      onMouseEnter={handleMouseIn}
-      onMouseLeave={handleMouseOut}
-      onMouseMove={handleGlint}
     >
-      <div id="background-glint" style={{ zIndex: -1 }}></div>
       <div id="navLinkContainer">
        
         {sessionStorage.getItem('token')!=null ? <>
@@ -114,8 +92,7 @@ function Navbar() {
        
       </div>
 <div>
-{sessionStorage.getItem('token')!=null ? <button className="navLinkButton" onClick={logout}><img src="/images/logout.png" height={70}
-width={60} alt="" /></button>:<></>}
+{sessionStorage.getItem('token')!=null ? <button className="navLinkButton" onClick={logout}><LogOutIcon color="white" size={64}></LogOutIcon></button>:<></>}
         
       </div>
       

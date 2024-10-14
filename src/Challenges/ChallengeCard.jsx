@@ -7,16 +7,6 @@ function ChallengeCard(props) {
   const [style, setStyle] = useState({});
   const [toggle, setToggle] = useState(false);
   // Use useEffect to change the style when the component mounts
-  useEffect(() => {
-    // Update the style when the component mounts 
-    if (props.isCompleted === false && props.isUnlocked === true) {
-      setStyle({ animation: "glow 1.5s linear infinite" });
-    }
-    if (props.isCompleted === true && props.isUnlocked === true) {
-      setStyle({ "box-shadow": "#009b00 0px 0px 70px", "border":" 1px solid #009b00" });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const generateRandomCharacters = () => {
     const characters =
@@ -89,9 +79,7 @@ function ChallengeCard(props) {
         challangeGain={props.challangeGain}
         points={props.challengePoints}
         flag={props.flag}
-        description={
-          props.desc
-        }
+        description={props.desc}
         keywords={props.keywords}
         index={props.index}
         modalActive={toggle}
@@ -104,6 +92,6 @@ function ChallengeCard(props) {
       />
     </section></>
   );
-}
+};
 
 export default ChallengeCard;
