@@ -1,12 +1,11 @@
+import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import Challenges from './Challenges/Challenges';
 import Login from "./LoginPage/Login";
-import Navbar from "./Navbar/Navbar";
-import Challenges from './Challenges/Challenges'
-import Scoreboard from './Scoreboard/Scoreboard'
-import Terminal from './Terminal/Terminal'
-import Signup from "./SignupPage/Main";
 import Profile from "./Profile/Profile";
-import { Route,Routes } from "react-router-dom";
-import { useState,useEffect } from "react";
+import Scoreboard from './Scoreboard/Scoreboard';
+import Signup from "./SignupPage/Main";
+import Terminal from './Terminal/Terminal';
 
 function App() {
   const [onlineStatus, setOnlineStatus] = useState(false);
@@ -48,7 +47,6 @@ function App() {
       ws.send(JSON.stringify({token:token}))
     };
 
-    // Clean up when component is unmounted
     return () => {
       ws.close();
     };
@@ -57,7 +55,6 @@ function App() {
 
   return (
     <div style={{'padding':'0px'}}>
-      {/* <Navbar/> */}
       <Routes>
       <Route path="/" Component={Login}/>
       <Route path="/sign-up" Component={Signup}/>

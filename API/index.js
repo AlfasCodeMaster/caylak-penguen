@@ -6,7 +6,7 @@ const { MongoClient, ObjectId } = require('mongodb')
 
 const app = express();
 const port = 3001;
-const secretKey = 'LoveU';
+const secretKey = 'L00kD@d1mt0oR!';
 
 app.use(bodyParser.json());
 app.use(cors());

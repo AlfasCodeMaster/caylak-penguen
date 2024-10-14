@@ -1,6 +1,6 @@
-import "./main.css";
-import { useState,useRef,useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import Navbar from "../Navbar/Navbar";
+import "./main.css";
 
 function Signup() {
   const [loginData, setLoginData] = useState({ username: "", password: "",passwordRepeat:"",grade:"" });
@@ -14,22 +14,20 @@ function Signup() {
   };
   const submitHandler = (e) => {
     e.preventDefault();
-    
-    // Logging the loginData for debugging
-    console.log(loginData);
+  
   
     // Check if any required fields are empty
     if (loginData.username === "" || loginData.grade === "" || loginData.password === "" || loginData.passwordRepeat === "") {
       setFail(true);
-      setFailReason("Boş/Geçersiz girdi"); // "Empty/Invalid input" in Turkish
-      return; // Prevent further execution if any field is empty
+      setFailReason("Boş/Geçersiz girdi"); 
+      return; 
     }
   
     // Check if passwords match
     if (loginData.password !== loginData.passwordRepeat) {
       setFail(true);
-      setFailReason("Şifreler Eşleşmiyor"); // "Passwords do not match" in Turkish
-      return; // Prevent further execution if passwords don't match
+      setFailReason("Şifreler Eşleşmiyor"); 
+      return; 
     }
 
     if(loginData.password.length <=8){
@@ -44,7 +42,7 @@ function Signup() {
       return;
     }
 
-    // Check if password contains at least one special character
+ 
     const hasSpecialChar = /[^a-zA-Z0-9]/.test(loginData.password);
     if (!hasSpecialChar) {
       setFail(true)
@@ -53,7 +51,7 @@ function Signup() {
     }
 
   
-    // Proceed to send data to the server if all validations pass
+   
     fetch("http://127.0.0.1:3001/signup", {
       method: "POST",
       headers: {
@@ -65,14 +63,14 @@ function Signup() {
       .then((data) => {
         if (data.message === "Login Successful") {
           sessionStorage.setItem("token", data.token);
-          window.location.href = "/#challenges"; // Redirect on successful signup
+          window.location.href = "/#challenges"; 
         } else {
-          setFailReason(data.message); // Set fail reason if signup fails
+          setFailReason(data.message); 
           setFail(true);
         }
       })
       .catch((error) => {
-        // Catch any fetch errors
+    
         setFailReason("An error occurred during signup");
         setFail(true);
         console.error("Error:", error);

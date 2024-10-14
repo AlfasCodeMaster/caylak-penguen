@@ -1,7 +1,7 @@
-import React, { useState,useEffect } from 'react';
-import './terminal.css'
-import LevelSwitch from './LevelSwitch';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../Navbar/Navbar';
+import LevelSwitch from './LevelSwitch';
+import './terminal.css';
 
 function Terminal() {
   const [currentDirectory, setCurrentDirectory] = useState('~');
@@ -46,7 +46,6 @@ function Terminal() {
 
         break;
       case 'cd':
-        // Implement cd logic here to change the current directory.
         if (args[1] === '..') {
 
           setCurrentDirectory('~');
@@ -61,7 +60,6 @@ function Terminal() {
         }
         break;
       case 'cat':
-        // Implement cat logic here to display file contents.
         if (args[1] === 'homework.txt' && currentDirectory==="flag_bu_klarasörde") {
           result = 'İngilizce: Workbook ve Student Book 3.1 Vocabulary Booster';
         } else if (args[1] === 'grades.txt' && currentDirectory==="flag_bu_klarasörde") {
@@ -90,7 +88,6 @@ function Terminal() {
           }
           break;
         case 'cat':
-          // Implement cat logic here to display file contents.
           switch(args[1]){
             case ".flag.txt":
               result = "TIMTAL={H1DD3N_F!L€S}"
@@ -143,7 +140,6 @@ function Terminal() {
 
         break;
       case 'cat':
-        // Implement cat logic here to display file contents.
         if(command === 'cat -- -flag.txt'){
           result="TIMTAL={S€4RCH_P4R4M€TERS}"
         }
