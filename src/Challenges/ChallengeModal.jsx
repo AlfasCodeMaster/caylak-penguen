@@ -1,12 +1,12 @@
-import "./ChallengeModal.css";
+import { BadgeInfo, BookCheck, FileX } from "lucide-react";
 import { useState } from "react";
-import { BadgeInfo,FileX,BookCheck } from "lucide-react";
+import "./ChallengeModal.css";
 
 function ChallengeModal(props) {
   const [style, setStyle] = useState({});
-  const [gain, setGain] = useState({ opacity: "0" });
-  const [fail, setFail] = useState({ opacity: "0" });
-  const [sol, setSol] = useState({ opacity: "0" });
+  const [gain, setGain] = useState({ width:"0px" });
+  const [fail, setFail] = useState({ width:"0px" });
+  const [sol, setSol] = useState({width:"0px" });
   const [flagControl, setFlagControl] = useState("");
   const [flagAnswer, setFlagAnswer] = useState("");
   const modalClass = props.modalActive
@@ -56,10 +56,10 @@ function ChallengeModal(props) {
     setFlagControl(e.target.value);
   };
   const handleHoverIn = () => {
-    setGain({});
+    setGain({ width:"26rem"});
   };
   const handleHoverOut = () => {
-    setGain({ opacity: "0" });
+    setGain({ width:"0px"});
   };
   const handleHoverFailIn = () => {
     setFail({});
@@ -101,42 +101,7 @@ function ChallengeModal(props) {
       <div onClick={closeModal} className={modalClass} style={style}></div>
       <div style={style} className={modalBody}>
         <section className="modal-header">
-          <div className="gainContainer">
-            <div className="gaintooltip" style={gain}>
-              <p className="tooltiptext">Kazanım: {props.challangeGain}</p>
-            </div>
-            <BadgeInfo
-              onMouseOver={handleHoverIn}
-              onMouseOut={handleHoverOut}
-              color="grey"
-              size={20}
-              className="gain"
-            ></BadgeInfo>
-          </div>
-          <div className="failContainer">
-            <div className="failtooltip" style={sol}>
-              <p className="tooltiptext">{`Çözüm Sayısı: ${props.solCount}`}</p>
-            </div>
-            <BookCheck
-              onMouseOver={handleHoverSolIn}
-              onMouseOut={handleHoverSolOut}
-              color="grey"
-              size={20}
-              className="gain"
-            ></BookCheck>
-          </div>
-           {props.failCount!=null?<div className="solContainer">
-            <div className="soltooltip" style={fail}>
-              <p className="tooltiptext">{`Yanlış Sayısı: ${props.failCount}`}</p>
-            </div>
-            <FileX
-              onMouseOver={handleHoverFailIn}
-              onMouseOut={handleHoverFailOut}
-              color="grey"
-              size={20}
-              className="gain"
-            ></FileX>
-          </div>:<></>}
+          
           
 
             <div className="hintContainer">
@@ -154,6 +119,39 @@ function ChallengeModal(props) {
           <p className="modalChallengePoints">{props.points}</p>
         </section>
         <section className="modal-body">
+        <div className="gainContainer">
+            <div className="gaintooltip" style={gain}>
+              <p className="tooltiptext">Kazanım: {props.challangeGain}</p>
+            </div>
+            <BadgeInfo
+              onMouseOver={handleHoverIn}
+              onMouseOut={handleHoverOut}
+              size={20}
+              className="gain"
+            ></BadgeInfo>
+          </div>
+          <div className="failContainer">
+            <div className="failtooltip" style={sol}>
+              <p className="tooltiptext">{`Çözüm Sayısı: ${props.solCount}`}</p>
+            </div>
+            <BookCheck
+              onMouseOver={handleHoverSolIn}
+              onMouseOut={handleHoverSolOut}
+              size={20}
+              className="gain"
+            ></BookCheck>
+          </div>
+           {props.failCount!=null?<div className="solContainer">
+            <div className="soltooltip" style={fail}>
+              <p className="tooltiptext">{`Yanlış Sayısı: ${props.failCount}`}</p>
+            </div>
+            <FileX
+              onMouseOver={handleHoverFailIn}
+              onMouseOut={handleHoverFailOut}
+              size={20}
+              className="gain"
+            ></FileX>
+          </div>:<></>}
           <p className="modalDesc">{props.description}</p>
           {props.keywords && (
             <p className="keywords">Anahtar kelimeler: {props.keywords}</p>

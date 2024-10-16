@@ -1,8 +1,8 @@
 .challengeModalMain {
-  visibility: hidden;
+  visibility: hidden;  
   opacity: 0;
   width: 100vw;
-  top: 10vh;
+  top: 6rem;
   right: 0;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
@@ -23,22 +23,15 @@
 .modalCard{
     visibility: hidden;
   opacity: 0;
-  width: 30vw;
-  display: flex;
-  flex-direction: column;
-  justify-self: center;
-  align-self: center;
-  position: fixed;
-  top:25vh;
-  transform: scale(1);
-  height:auto;
-  left:35vw;
+background-size: contain;
+background-repeat: no-repeat;
+  width: 40rem;
+  position: absolute;
+top: 50vh;
+left: calc(100vw - 80rem);
   transition: all .5s;
   z-index: 11;
-    border: 1px solid #a5dfdb;
-    box-shadow: #a5dfdb 0px 0px 20px;
-    border-radius: 20px;
-    background-color: rgba(0, 0, 0, 0.95);
+
 }
 .active {
     visibility: visible;
@@ -57,40 +50,54 @@
     animation: none;
 }
 .modal-header{
-  width: 100%;
+  height: 6.8437499999rem;
+  background-repeat: no-repeat;
+  width: 40rem;
+  background-size: contain;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-items: center;
-  border-bottom: 2px solid #a5dfdb;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdIAAABQCAYAAACtb/RRAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHuSURBVHhe7dshUhxRGEbRGZYAAiQYWABodoCKiUYHk4XEJDoag2IHaFhAFMgY1jAxT3YxlbnV1TXFOaZ/1/LWE996s9ms5nRxcjTvDwDgA3/+vq/HOYuD8QUAdiCkABAIKQAEQgoAgZACQCCkABAIKQAEeUdad6JXp2fjAoD/9/z2Oq7d1J2pFykABEIKAIGQAkAgpAAQCCkABEIKAIGQAkCwdUe69E70+931uAD4jH78fBrXbubemXqRAkAgpAAQCCkABEIKAIGQAkAgpAAQCCkABOvz40M7UQD21tI7Uy9SAAiEFAACIQWAQEgBIBBSAAiEFAACIQWAYOuO1E4UgH02987UixQAAiEFgEBIASAQUgAIhBQAAiEFgEBIASDIO9K6E73//TiuaV9vb8YFwGc0dye27UztSAFgRkIKAIGQAkAgpAAQCCkABEIKAIGQAkCw+I4UAJZkRwoACxJSAAiEFAACIQWAQEgBIBBSAAiEFAACIQWAQEgBIBBSAAiEFAACIQWAQEgBIBBSAAiEFAACIQWAQEgBIBBSAAiEFAACIQWAQEgBIBBSAAiEFACC9fnx4Wbck65Oz8Y17duXy3EBwP759fAyrmnPb6/jmuZFCgCBkAJAIKQAEAgpAARCCgCBkAJAIKQAsLPV6h9kM0kWq42LlQAAAABJRU5ErkJggg==');
 }
 
 .modal-body{
+  position: relative;
+  top: -1px;
   font-size: small;
   height: auto;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdIAAAAIBAMAAAC/nGP4AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJUExURSYXElo3M8ykcd3h6BcAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAoSURBVEjHYwABQSBQGq4A5DkGGBj16bAAoz4dfmDUp8MPjDSfMjAAAMIW6tEnzurqAAAAAElFTkSuQmCC');
+  background-size: contain;
 }
 .modal-flag{
-  min-height: 10px;
-  width: 100%;
-  border-top: 1px solid #a5dfdb;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdIAAABQCAYAAACtb/RRAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIASURBVHhe7dshbhRAGIbhXY5QRJGtKQegujdAYdBoanqQmqLRGBQ3qC4HQLUSwxkWM3LSSfbNZtP0ecz8N3gz4ttenJ7sNs+4PDsf19zXTx/GBQAvz7efv8c19/D0OK65N+MFAPYgpAAQCCkABEIKAIGQAkAgpAAQCCkABHlHenN9NS4AeHlu7+7HNWdHCgAHJKQAEAgpAARCCgCBkAJAIKQAEAgpAARCCgCBkAJAIKQAEAgpAARCCgCBkAJAIKQAEAgpAARCCgCBkAJAIKQAEAgpAARCCgCBkAJAIKQAEAgpAATbi9OT3binLs/OxzV3c301rv38+P5rXHOfv3wcFwCv0aE7cXt3P665h6fHcc35kQJAIKQAEAgpAARCCgCBkAJAIKQAEAgpAAR5R7pSd6YAUKx2oit2pABwQEIKAIGQAkAgpAAQCCkABEIKAIGQAkCw3JGu2JkCcEyH3omu+JECQCCkABAIKQAEQgoAgZACQCCkABAIKQAE293u+Rnp+3dv7UwBOJpj70T//P23HeeUHykABEIKAIGQAkAgpAAQCCkABEIKAIGQAkCw3JGuHHtnCsDrduid6IofKQAEQgoAgZACQCCkABAIKQAEQgoAgZACQJB3pCt1ZwoARd2JrviRAkAgpAAQCCkABEIKAIGQAkAgpAAQCCkA7G2z+Q+Dp0kWSC46WwAAAABJRU5ErkJggg==');
+  height: 6.9537499999rem;
+  background-repeat: no-repeat;
+  width: 40rem;
+  background-size: contain;
+  position: relative;
+  top: -2px;
 }
 .modalChallengeName{
-  color:white;
-  font-size: x-large;
+  color:#523713;
+  font-size: large;
   font-weight: 500;
-  margin: 10px 0px 10px 0px;
+  margin: 40px 0px 10px 0px;
 }
 .modalChallengePoints{
   margin: 0px 0px 10px 0px;
-  color: white;
+  color: #523713;
 }
 .modalChallengePoints::after{
   content:" Puan"
 }
 .modalDesc{
-  color: white;
-  padding: 10px 20px;
+  color: #523713;
+  margin: 0;
+  padding: 10px 75px;
+  line-height: 1rem;
   overflow-wrap: break-word;
+  text-align: center;
   
 }
 .button-group{
@@ -144,22 +151,28 @@ button.flagSubmit:hover {
   text-align: center;
   margin-top: 0;
 }
+.gain{
+  color: #523713;
+}
 .gaintooltip{
+  border: 0;
   transition:all 250ms linear;
   position: absolute;
-  border: 1px solid #a5dfdb;
-  background-color: black;
-  border-radius: 20px;
-  padding: 8px;
-  margin-top: -3.2rem;
-  height: 1rem;
-  overflow-wrap: none;
-  white-space: nowrap;
+  background-position: right;
+  background-repeat: no-repeat;
+  background-color: #CCA471;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMEAAAAYCAIAAADMEQ4sAAAAAXNSR0IArs4c6QAAAGtJREFUaIHt0qEVQAAARVFsbBHFCiaR7cAoqqC9ozj3xp9+eOOxzQM8LOv+uh/X+bpPH//h/zREpSEqDVFpiEpDVBqi0hCVhqg0RKUhKg1RaYhKQ1QaotIQlYaoNESlISoNUWmISkNUGqK6AfESBn/UF7czAAAAAElFTkSuQmCC');
+  background-size: 270px 100%; /* Height is 100%, width scales automatically */
+  left: 25px;
+  width: 26rem;
+  overflow:hidden;
+  word-break: keep-all;
 }
 .gainContainer{
   position: fixed;
-  right: 8px;
-  top:8px
+  z-index: 12;
+  right: 1.5vw;
+  top: 7rem;
 }
 .failtooltip{
   transition:all 250ms linear;
@@ -175,8 +188,8 @@ button.flagSubmit:hover {
 }
 .failContainer{
   position: fixed;
-  right: 8px;
-  top:32px
+  right: 1.5vw;
+  top: 8.5rem;
 }
 .soltooltip{
   transition:all 250ms linear;
@@ -192,14 +205,17 @@ button.flagSubmit:hover {
 }
 .solContainer{
   position: fixed;
-  right: 8px;
-  top:56px
+  right: 1.5vw;
+  top: 10rem;
 }
 .tooltiptext{
   color: white;
-  margin-top: -0.1rem;
   word-break: keep-all;
-  overflow-wrap: none;
+  overflow-wrap: hidden;
+  margin: 8px 8px 8px 16px;
+  overflow: hidden;
+  width: 25rem;
+
 }
 .keywords{
   color: grey;
@@ -212,14 +228,13 @@ button.flagSubmit:hover {
 }
 .hint-buy{
     margin: 4px;
-    border: 1px solid #86b5b2;
-    border-radius: 10px;
-    background-color: black;
+    background-color: transparent;
     color: white;
     padding:4px;
+    border: 0;
 }
 .hint-buy:hover{
-  box-shadow: 0px 0px 20px #a5dfdb;
+  background-color: rgba(0,0,0,0.4);
 }
 .hint{
     border: 1px solid #86b5b2;
