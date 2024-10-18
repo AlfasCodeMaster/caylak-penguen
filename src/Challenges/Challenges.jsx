@@ -1,7 +1,7 @@
-import "./Challenges.css";
-import ChallengeCard from "./ChallengeCard";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
+import ChallengeCard from "./ChallengeCard";
+import "./Challenges.css";
 
 function Challenges() {
   const [gridChallenges, setChallenges] = useState([]);
@@ -53,19 +53,19 @@ function Challenges() {
     useEffect(()=>{
         switch(active){
             case 0:
-                setTimeout(()=>{setStyle0({boxShadow:'0px 0px 30px #a5dfdb'})})
+                setTimeout(()=>{setStyle0({backgroundColor:'#aa8250'})})
                 break
             case 1:
-                setTimeout(()=>{setStyle1({boxShadow:'0px 0px 30px #a5dfdb'})})
+                setTimeout(()=>{setStyle1({backgroundColor:'#aa8250'})})
                 break
             case 2:
-                setTimeout(()=>{setStyle2({boxShadow:'0px 0px 30px #a5dfdb'})})
+                setTimeout(()=>{setStyle2({backgroundColor:'#aa8250'})})
                 break
             case 3:
-                setTimeout(()=>{setStyle3({boxShadow:'0px 0px 30px #a5dfdb'})})
+                setTimeout(()=>{setStyle3({backgroundColor:'#aa8250'})})
                 break
             case 4:
-                setTimeout(()=>{setStyle4({boxShadow:'0px 0px 30px #a5dfdb'})})
+                setTimeout(()=>{setStyle4({backgroundColor:'#aa8250'})})
                 break
             default:
                 break
@@ -75,19 +75,19 @@ function Challenges() {
     useEffect(()=>{
       switch(diff){
           case 0:
-              setTimeout(()=>{setdiff1({boxShadow:'0px 0px 30px #a5dfdb'})})
+              setTimeout(()=>{setdiff1({backgroundColor:'#aa8250'})})
               break
           case 1:
-              setTimeout(()=>{setdiff2({boxShadow:'0px 0px 30px #a5dfdb'})})
+              setTimeout(()=>{setdiff2({backgroundColor:'#aa8250'})})
               break
           case 2:
-              setTimeout(()=>{setdiff3({boxShadow:'0px 0px 30px #a5dfdb'})})
+              setTimeout(()=>{setdiff3({backgroundColor:'#aa8250'})})
               break
           case 3:
-              setTimeout(()=>{setdiff4({boxShadow:'0px 0px 30px #a5dfdb'})})
+              setTimeout(()=>{setdiff4({backgroundColor:'#aa8250'})})
               break
           case 4:
-              setTimeout(()=>{setdiff5({boxShadow:'0px 0px 30px #a5dfdb'})})
+              setTimeout(()=>{setdiff5({backgroundColor:'#aa8250'})})
               break
           default:
               break

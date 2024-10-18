@@ -1,10 +1,10 @@
+import React, { useEffect, useRef, useState } from "react";
 import "./ChallengeCard.css";
 import ChallengeModal from "./ChallengeModal";
-import React, { useEffect, useState } from "react";
 
 function ChallengeCard(props) {
+  const mainRef = useRef()
   const [randomCharacters, setRandomCharacters] = useState([]);
-  const [style, setStyle] = useState({});
   const [toggle, setToggle] = useState(false);
   // Use useEffect to change the style when the component mounts
 
@@ -24,6 +24,9 @@ function ChallengeCard(props) {
 
   useEffect(() => {
     // Generate random characters initially
+    if( props.isUnlocked==false){
+      mainRef.current.classList.add('challenge-card-body-disabled');
+    }
     generateRandomCharacters();
 
     // Set an interval to generate random characters every 2 seconds (you can adjust the interval)
@@ -47,7 +50,9 @@ function ChallengeCard(props) {
   }, []);
 
   const modalToggle = () => {
-    setToggle(true);
+    if(props.isUnlocked){
+      setToggle(true);
+    }
   };
 
   const handleDataFromChild = (data) => {
@@ -59,8 +64,8 @@ function ChallengeCard(props) {
 
   return (
     <>
-    <section className="challenge-card-body" style={style} >
-      <div className="challenge-card-top" onClick={modalToggle}>
+    <section className="challenge-card-body" ref={mainRef} >
+      <div className="challenge-card-top" onClick={modalToggle} >
       <p className="challenge-category">
           {props.isUnlocked ? props.category : randomCharacters}
         </p>
@@ -73,7 +78,7 @@ function ChallengeCard(props) {
             : randomCharacters}
         </p>
       </div>
-     
+
       <ChallengeModal
         challengeName={props.challengeName}
         challangeGain={props.challangeGain}
@@ -87,7 +92,7 @@ function ChallengeCard(props) {
         hint={props.hint}
         sendDataToParent={handleDataFromChild}
         fetchFail={fetchFail}
-        failCount= {props.failCount==0 ? null:props.failCount}
+        failCount= {props.failCount==0 ? 0:props.failCount}
         solCount = {props.solCount}
       />
     </section></>

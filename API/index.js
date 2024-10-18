@@ -135,29 +135,53 @@ app.post('/change-password',authenticate, async (req, res)=>{
   }
 })
 
-app.post('/get-profile-page',authenticate, async(req,res)=>{
-  const token = req.headers.authorization.split(' ')[1]
-  const decoded = jwt.decode(token);
-  const userId = decoded.userId
-  const db = await connect();
-  const userCollection = db.collection('userAuth')
-  const challengeCollection = db.collection('challenges')
-  const user = await userCollection.findOne({"_id":new ObjectId(userId)})
-  const challenges = await challengeCollection.findOne({"userID":-1})
-  const first10data = await challengeCollection.findOne({"userID":-2})
+app.post('/get-profile-page', authenticate, async (req, res) => {
+  try {
+    const token = req.headers.authorization.split(' ')[1];
+    const decoded = jwt.decode(token);
+    const userId = decoded.userId;
+    const db = await connect();
+    const userCollection = db.collection('userAuth');
+    const challengeCollection = db.collection('challenges');
 
-  const payload = {
-    username:user.userData.username,
-    profilePic:user.profilePic,
-    points:user.points,
-    solvers:[]
+    // Fetch user, challenges, and first10data
+    const user = await userCollection.findOne({ "_id": new ObjectId(userId) });
+    const challenges = await challengeCollection.findOne({ "userID": -1 });
+    const first10data = await challengeCollection.findOne({ "userID": -2 });
+
+    const payload = {
+      username: user.userData.username,
+      profilePic: user.profilePic,
+      points: user.points,
+      solvers: []
+    };
+
+    // Process each challenge
+    await Promise.all(challenges.challenges.map(async (challenge, index) => {
+      const userArr = [];
+
+      // Process solvers for each challenge
+      await Promise.all(first10data.challenges[index].solvers.map(async (userName) => {
+        const solver = await userCollection.findOne({ "userData.username": userName });
+        if (solver) {
+          userArr.unshift([solver.userData.username, solver.online, solver.profilePic]);
+        }
+      }));
+      console.log(userArr);
+      
+      // Add the challenge and solvers to the payload
+      const item = { challengeName: challenge.challengeName, solvers: userArr };
+      payload.solvers.push(item);
+    }));
+
+    // Send the final payload
+    res.json(payload);
+  } catch (error) {
+    console.error("Error processing profile page:", error);
+    res.status(500).json({ error: "An error occurred while fetching the profile page" });
   }
-  challenges.challenges.forEach((challenge,index)=>{
-    const item = {challengeName:challenge.challengeName,solvers:first10data.challenges[index].solvers}
-    payload.solvers = [...payload.solvers, item ]
-  })
-  res.json(payload)
-})
+});
+
 
 app.get('/profilePictures', authenticate, async(req,res)=>{
   const token = req.headers.authorization.split(' ')[1]

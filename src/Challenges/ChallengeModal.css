@@ -1,13 +1,14 @@
 .challengeModalMain {
   visibility: hidden;  
+  position: fixed;
   opacity: 0;
   width: 100vw;
   top: 6rem;
   right: 0;
-  height: 100vh;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  z-index: 10;
+  z-index: 111;
+
 }
 @keyframes fadeOut {
   0% {
@@ -26,11 +27,11 @@
 background-size: contain;
 background-repeat: no-repeat;
   width: 40rem;
-  position: absolute;
-top: 50vh;
+  position: fixed;
 left: calc(100vw - 80rem);
+top: 50%;
   transition: all .5s;
-  z-index: 11;
+  z-index: 112;
 
 }
 .active {
@@ -45,6 +46,7 @@ left: calc(100vw - 80rem);
   visibility: visible;
     transition: all 0.4s;
   transform: scale(1.2);
+  
     opacity: 1;
     top:30vh;
     animation: none;
@@ -175,36 +177,42 @@ button.flagSubmit:hover {
   top: 7rem;
 }
 .failtooltip{
+  border: 0;
   transition:all 250ms linear;
   position: absolute;
-  border: 1px solid #a5dfdb;
-  background-color: black;
-  border-radius: 20px;
-  padding: 8px;
-  margin-top: calc(-3.2rem - 24px);
-  height: 1rem;
-  overflow-wrap: none;
-  white-space: nowrap;
+  background-position: right;
+  background-repeat: no-repeat;
+  background-color: #CCA471;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMEAAAAYCAIAAADMEQ4sAAAAAXNSR0IArs4c6QAAAGtJREFUaIHt0qEVQAAARVFsbBHFCiaR7cAoqqC9ozj3xp9+eOOxzQM8LOv+uh/X+bpPH//h/zREpSEqDVFpiEpDVBqi0hCVhqg0RKUhKg1RaYhKQ1QaotIQlYaoNESlISoNUWmISkNUGqK6AfESBn/UF7czAAAAAElFTkSuQmCC');
+  background-size: 270px 100%; /* Height is 100%, width scales automatically */
+  left: 25px;
+  width: 20rem;
+  overflow:hidden;
+  word-break: keep-all;
 }
 .failContainer{
   position: fixed;
+  z-index: 12;
   right: 1.5vw;
   top: 8.5rem;
 }
 .soltooltip{
+  border: 0;
   transition:all 250ms linear;
   position: absolute;
-  border: 1px solid #a5dfdb;
-  background-color: black;
-  border-radius: 20px;
-  padding: 8px;
-  margin-top: calc(-3.2rem - 48px);
-  height: 1rem;
-  overflow-wrap: none;
-  white-space: nowrap;
+  background-position: right;
+  background-repeat: no-repeat;
+  background-color: #CCA471;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMEAAAAYCAIAAADMEQ4sAAAAAXNSR0IArs4c6QAAAGtJREFUaIHt0qEVQAAARVFsbBHFCiaR7cAoqqC9ozj3xp9+eOOxzQM8LOv+uh/X+bpPH//h/zREpSEqDVFpiEpDVBqi0hCVhqg0RKUhKg1RaYhKQ1QaotIQlYaoNESlISoNUWmISkNUGqK6AfESBn/UF7czAAAAAElFTkSuQmCC');
+  background-size: 270px 100%; /* Height is 100%, width scales automatically */
+  left: 25px;
+  width: 20rem;
+  overflow:hidden;
+  word-break: keep-all;
 }
 .solContainer{
   position: fixed;
+  z-index: 12;
   right: 1.5vw;
   top: 10rem;
 }
@@ -218,31 +226,29 @@ button.flagSubmit:hover {
 
 }
 .keywords{
-  color: grey;
+  color: #523713;
   text-align: center;
+  margin: 0;
 }
 .hintContainer{
   position: fixed;
-  left: 8px;
-  top:8px
+  left: 20px;
+  top:4.5rem
 }
 .hint-buy{
-    margin: 4px;
+  padding:1px;
+  margin-left:8px;
     background-color: transparent;
-    color: white;
-    padding:4px;
+    color: #523713;
     border: 0;
 }
 .hint-buy:hover{
   background-color: rgba(0,0,0,0.4);
 }
 .hint{
-    border: 1px solid #86b5b2;
-    border-radius: 10px;
-    background-color: black;
-    color: white;
-    padding:4px;
+    color: #523713;
     white-space:none;
     font-size: small;
-    margin-top: -3rem;
+    padding:1px;
+    margin-left:8px;
 }

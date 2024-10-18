@@ -1,7 +1,7 @@
-import "./profile.css";
-import Navbar from "../Navbar/Navbar";
-import { useState,useEffect } from "react";
 import { LockIcon } from "lucide-react";
+import { useEffect, useState } from "react";
+import Navbar from "../Navbar/Navbar";
+import "./profile.css";
 
 function Profile() {
     const [active, setActive] = useState(1)
@@ -155,7 +155,7 @@ function Profile() {
       <div style={{ padding: "0px" }} id="profile-main">
         {data &&<div className="profile-container">
             <div className="profile">
-                <img height={256} width={256} src={`/images/avatars/${data.profilePic}`} className="avatar"></img>
+                <img height={256} width={256} src={`/images/avatars/${data.profilePic}.gif`} className="avatar"></img>
                 <p className="profile-text">{ data.username}</p>
                 <p className="profile-text">{ data.points}</p>
                 <ul className="type-button-group">
@@ -177,9 +177,9 @@ function Profile() {
                         <hr className="seperator" />
                         <div className=" users-container">
                         { challenge.solvers.map((solver)=><div className="user">
-                                <img height={64} width={64} className="avatar" src="/avatar.jpg" alt="" />
+                                <img height={64} width={64} className="avatar" src={ solver[1]? '/images/avatars/' +solver[2]+'.gif':'/images/avatars/' +solver[2]+'.png'} alt="" />
                                 <div className="user-details">
-                                <p className="user-text">{solver}</p>
+                                <p className="user-text">{solver[0]}</p>
                                 {/* <p className="user-text">100 Paun</p>*/}</div>
                             </div>)}
                             

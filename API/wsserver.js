@@ -53,7 +53,7 @@ wss.on('connection', async (ws, req) => {
 
   jwt.verify(data.token, secretKey, (err, decoded) => {
     if (err) {
-      return res.status(401).json({ message: 'Invalid token' });
+      return ws.send(JSON.stringify({ message: 'Invalid token' }))
     }
   });
   const decoded = jwt.decode(data.token)

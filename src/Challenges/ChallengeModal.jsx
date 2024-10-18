@@ -62,16 +62,16 @@ function ChallengeModal(props) {
     setGain({ width:"0px"});
   };
   const handleHoverFailIn = () => {
-    setFail({});
+    setFail({ width:"20rem"});
   };
   const handleHoverFailOut = () => {
-    setFail({ opacity: "0" });
+    setFail({  width:"0px" });
   };
   const handleHoverSolIn = () => {
-    setSol({});
+    setSol({width:"20rem"});
   };
   const handleHoverSolOut = () => {
-    setSol({ opacity: "0" });
+    setSol({ width:"0px" });
   };
   const buyHint = () => {
     const token = sessionStorage.getItem("token");
@@ -170,6 +170,7 @@ function ChallengeModal(props) {
           <p className="wrongAnswer">{flagAnswer}</p>
         </section>
       </div>
+
     </div>
   );
 }
