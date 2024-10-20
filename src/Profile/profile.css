@@ -122,12 +122,9 @@
     box-shadow: 0px 0px 20px #a5dfdb;
   }
   
-  .password-entry:focus,#submit:focus {
-    transition: box-shadow 0.2s;
-    border: 1px solid #6f9592;
-    box-shadow: 0px 0px 20px #a5dfdb;
-  }
-
+#submit:hover{
+  color:#261712
+}
   
   .challange-container{
     background: #a5dfdb2d;
