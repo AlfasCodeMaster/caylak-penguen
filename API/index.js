@@ -164,14 +164,14 @@ app.post('/get-profile-page', authenticate, async (req, res) => {
       await Promise.all(first10data.challenges[index].solvers.map(async (userName) => {
         const solver = await userCollection.findOne({ "userData.username": userName });
         if (solver) {
-          userArr.unshift([solver.userData.username, solver.online, solver.profilePic]);
+          userArr.push([solver.userData.username, solver.online, solver.profilePic]);
         }
       }));
       console.log(userArr);
       
       // Add the challenge and solvers to the payload
       const item = { challengeName: challenge.challengeName, solvers: userArr };
-      payload.solvers.push(item);
+      payload.solvers.unshift(item);
     }));
 
     // Send the final payload
@@ -192,6 +192,32 @@ app.get('/profilePictures', authenticate, async(req,res)=>{
   const user = await userCollection.findOne({"_id":new ObjectId(userId)})
   const unlockedAvatars =  Object.entries(user.unlockedAvatars)
   return res.json(unlockedAvatars)
+})
+
+app.post('/change-pp', authenticate, async(req,res)=>{
+  const {avatar} = req.body
+  if(avatar==null){
+   return res.status(400).json({error:'No avatar specified'})
+  }
+  const token = req.headers.authorization.split(' ')[1]
+  const decoded = jwt.decode(token);
+  const userId = decoded.userId
+  const db = await connect();
+  const userCollection = db.collection('userAuth')
+  const user = await userCollection.findOne({"_id":new ObjectId(userId)})
+  const unlockedAvatars =  user.unlockedAvatars
+  if(unlockedAvatars[avatar]==null){
+    return res.status(400).json({error:'Geçersiz avatar'})
+  }
+  if(unlockedAvatars[avatar]==false){
+    return res.status(400).json({error:'Kilitli avatar!'})
+  }
+  if(unlockedAvatars[avatar]==true){
+    userCollection.findOneAndUpdate({"_id":new ObjectId(userId)},{
+      $set: { 'profilePic': avatar }
+    })
+    return res.json({message:`ok`})
+  }
 })
 
 app.post('/buy-hint', authenticate, async (req,res) => {
@@ -269,6 +295,7 @@ app.post('/flag-control', authenticate, async (req, res) => {
   const decoded = jwt.decode(token);
   const userId = decoded.userId
   const db = await connect();
+  const termCol = db.collection('terminalData')
   const collection = db.collection('challenges');
   const challenges = await collection.findOne({ "userID": new ObjectId(userId) });
   const targetChallenge = challenges.challenges[challengeIndex];
@@ -276,6 +303,21 @@ app.post('/flag-control', authenticate, async (req, res) => {
 
   if (flag === targetChallenge.flag && targetChallenge.completed === false) {
     console.log('doğru cevap bulundu');
+    if(targetChallenge.challengeName=='Seviye 1'){
+        await termCol.updateOne({ "userID": new ObjectId(userId) }, {
+          $set: { 'currentLevel':2
+        }
+        })
+    }
+
+    if(targetChallenge.challengeName=='Seviye 2'){
+      await termCol.updateOne({ "userID": new ObjectId(userId) }, {
+        $set: { 'currentLevel':3
+      }
+      })
+  }
+
+
     await collection.updateOne({ "userID": new ObjectId(userId) }, {
       $set: { [`challenges.${challengeIndex}.completed`]: true ,[`challenges.${challengeIndex}.completeDate`]:new Date()
     }
@@ -362,7 +404,7 @@ app.post('/execute-command', authenticate, async (req, res) => {
   const userId = decoded.userId
   const db = await connect();
   const collection = db.collection('terminalData');
-  const cursor = await collection.findOne({"userID": userId })
+  const cursor = await collection.findOne({"userID": new ObjectId(userId) })
   const currentLevel = cursor.currentLevel
   const currentDirectory = cursor.currentDir
     const args = command.split(' ');
@@ -380,7 +422,7 @@ app.post('/execute-command', authenticate, async (req, res) => {
         } else {
           const returnMessage = [...log,`flag_bu_klarasörde`]
             collection.updateOne({userID:new ObjectId(userId)},{
-              $set: { 'log': [...log,'flag.txt'] }
+              $set: { 'log': [...log,''] }
             })
            res.json({result:returnMessage,currentDirectory:currentDirectory})
         }
@@ -400,27 +442,27 @@ app.post('/execute-command', authenticate, async (req, res) => {
             collection.updateOne({userID:new ObjectId(userId)},{
               $set: { 'log': [...log,`bash: cd: ${args[1]}: No such file or directory`] }
             })
-            res.json({logs:returnMessage,currentDirectory:currentDirectory})
+            res.json({result:[...log,`bash: cd: ${args[1]}: No such file or directory`] ,currentDirectory:currentDirectory})
           } else if (args[1] === "flag_bu_klarasörde" && currentDirectory==='~')
           {            collection.updateOne({userID:new ObjectId(userId)},{
             $set: { 'currentDir': 'flag_bu_klarasörde' }
           })
-          res.json({result:''})
+          res.json({result:log,currentDirectory:'flag_bu_klarasörde',currentDirectory:`flag_bu_klarasörde`})
           } else if (args[1] && currentDirectory !== "flag_bu_klarasörde"){
-            res.json({result:`bash: cd: ${args[1]}: No such file or directory`})
+            res.json({result:[...log,`bash: cd: ${args[1]}: No such file or directory`],currentDirectory:currentDirectory})
           }
         }
         break;
       case 'cat':
         // Implement cat logic here to display file contents.
         if (args[1] === 'homework.txt' && currentDirectory==="flag_bu_klarasörde") {
-          res.json({result:'İngilizce: Workbook ve Student Book 3.1 Vocabulary Booster'})
+          res.json({result:[...log,'İngilizce: Workbook ve Student Book 3.1 Vocabulary Booster']})
         } else if (args[1] === 'grades.txt' && currentDirectory==="flag_bu_klarasörde") {
-          res.json({result:'Türkçe:90\nİngilizce:40'})
+          res.json({result:[...log,'Türkçe:90\nİngilizce:40']})
         } else if (args[1] === 'flag.txt' && currentDirectory==="flag_bu_klarasörde") {
-          res.json({result:'TIMTAL={L1NUX_TERMINAL_G0!}'})
+          res.json({result:[...log,'TIMTAL={L1NUX_TERMINAL_G0!}']})
         } else {
-          res.json({result:`cat: ${args[1]}: No such file or directory`})
+          res.json({result:[...log,`cat: ${args[1]}: No such file or directory`]})
         }
         break;
       default:
@@ -431,76 +473,139 @@ app.post('/execute-command', authenticate, async (req, res) => {
       switch (args[0]) {
         case 'ls':
           if(!args[1]){
-            res.json({result:'1.txt 2.txt 3.txt 4.txt 5.txt 6.txt 7.txt 8.txt 9.txt 10.txt'})
+            collection.updateOne({userID:new ObjectId(userId)},{
+              $set: { 'log': [...log,'1.txt 2.txt 3.txt 4.txt 5.txt 6.txt 7.txt 8.txt 9.txt 10.txt'] }
+            })
+            res.json({result: [...log,'1.txt 2.txt 3.txt 4.txt 5.txt 6.txt 7.txt 8.txt 9.txt 10.txt'],currentDirectory:currentDirectory})
           }else if(args[1]!=='-a'&& args[1].startsWith('-')){
-            res.json({result:`ls: invalid option -- '${args[1]}'`})
+            collection.updateOne({userID:new ObjectId(userId)},{
+              $set: { 'log': [...log,`ls: invalid option -- '${args[1]}'`] }
+            })
+            res.json({result:[...log,`ls: invalid option -- '${args[1]}'`],currentDirectory:currentDirectory})
           }else if(args!=='-a'&& !args[1].startsWith('-')){
-            res.json({result:`ls: cannot access '${args[1]}': No such file or directory`})
+            collection.updateOne({userID:new ObjectId(userId)},{
+              $set: { 'log': [...log,`ls: cannot access '${args[1]}': No such file or directory`] }
+            })
+            res.json({result: [...log,`ls: cannot access '${args[1]}': No such file or directory`],currentDirectory:currentDirectory})
           }else{
-            res.json({result:'.flag.txt 1.txt 2.txt 3.txt 4.txt 5.txt 6.txt 7.txt 8.txt 9.txt 10.txt'})
+            collection.updateOne({userID:new ObjectId(userId)},{
+              $set: { 'log': [...log,'.flag.txt 1.txt 2.txt 3.txt 4.txt 5.txt 6.txt 7.txt 8.txt 9.txt 10.txt'] }
+            })
+            res.json({result: [...log,'.flag.txt 1.txt 2.txt 3.txt 4.txt 5.txt 6.txt 7.txt 8.txt 9.txt 10.txt'],currentDirectory:currentDirectory})
           }
           break;
         case 'cat':
           // Implement cat logic here to display file contents.
           switch(args[1]){
             case ".flag.txt":
-              res.json({result:"TIMTAL={H1DD3N_F!L€S}"})
+              collection.updateOne({userID:new ObjectId(userId)},{
+                $set: { 'log': [...log,"TIMTAL={H1DD3N_F!L€S}"] }
+              })
+              res.json({result:[...log,"TIMTAL={H1DD3N_F!L€S}"],currentDirectory:currentDirectory})
               break;
             case "1.txt":
-              res.json({result:"Tamamen Yalnız Değilsin"})
+              collection.updateOne({userID:new ObjectId(userId)},{
+                $set: { 'log': [...log,"Tamamen Yalnız Değilsin"] }
+              })
+              res.json({result: [...log,"Tamamen Yalnız Değilsin"],currentDirectory:currentDirectory})
               break
             case "2.txt":
-              res.json({result:"Tamamen Yalnızsın"})
+              collection.updateOne({userID:new ObjectId(userId)},{
+                $set: { 'log': [...log,"Tamamen Yalnızsın"] }
+              })
+              res.json({result:[...log,"Tamamen Yalnızsın"],currentDirectory:currentDirectory })
               break
             case "3.txt":
-              res.json({result:"Bir Şey Olmasını Mı Bekliyorsun?"})
+              collection.updateOne({userID:new ObjectId(userId)},{
+                $set: { 'log': [...log,"Bir Şey Olmasını Mı Bekliyorsun?"] }
+              })
+              res.json({result: [...log,"Bir Şey Olmasını Mı Bekliyorsun?"],currentDirectory:currentDirectory})
               break
             case "4.txt":
-              res.json({result:"Postman, API geliştirme ve testi aşamasında kullanışlı olabiliyor"})
+              collection.updateOne({userID:new ObjectId(userId)},{
+                $set: { 'log': [...log,"Postman, API geliştirme ve testi aşamasında kullanışlı olabiliyor"] }
+              })
+              res.json({result:[...log,"Postman, API geliştirme ve testi aşamasında kullanışlı olabiliyor"],currentDirectory:currentDirectory})
               break
             case "5.txt":
-              res.json({result:"SQL olmayan veri tabanlarına da enjeksiyon atabilirsin"})
+              collection.updateOne({userID:new ObjectId(userId)},{
+                $set: { 'log': [...log,"SQL olmayan veri tabanlarına da enjeksiyon atabilirsin"] }
+              })
+              res.json({result: [...log,"SQL olmayan veri tabanlarına da enjeksiyon atabilirsin"],currentDirectory:currentDirectory})
               break
             case "6.txt":
-              res.json({result:"Yawai Mo"})
+              collection.updateOne({userID:new ObjectId(userId)},{
+                $set: { 'log': [...log,"Yawai Mo"] }
+              })
+              res.json({result: [...log,"Yawai Mo"],currentDirectory:currentDirectory })
               break
             case "7.txt":
-              res.json({result:"Komutlara argüman girilebildiğini biliyor muydun?"})
+              collection.updateOne({userID:new ObjectId(userId)},{
+                $set: { 'log': [...log,"Komutlara argüman girilebildiğini biliyor muydun?"] }
+              })
+              res.json({result:[...log,"Komutlara argüman girilebildiğini biliyor muydun?"],currentDirectory:currentDirectory})
               break
             case "8.txt":
-              res.json({result:"ARKANA BAK"})
+              collection.updateOne({userID:new ObjectId(userId)},{
+                $set: { 'log': [...log,"ARKANA BAK"] }
+              })
+              res.json({result:[...log,"ARKANA BAK"] ,currentDirectory:currentDirectory})
               break
             case "9.txt":
-              res.json({result:"Ah be Kaneki bu kaderi haketmiyordun..."})
+              collection.updateOne({userID:new ObjectId(userId)},{
+                $set: { 'log': [...log,"Ah be Kaneki bu kaderi haketmiyordun..."] }
+              })
+              res.json({result: [...log,"Ah be Kaneki bu kaderi haketmiyordun..."],currentDirectory:currentDirectory})
               break
             case "10.txt":
-              res.json({result:"Arkanda Biri Mi Var?"})
+              collection.updateOne({userID:new ObjectId(userId)},{
+                $set: { 'log': [...log,"Arkanda Biri Mi Var?"] }
+              })
+              res.json({result:[...log,"Arkanda Biri Mi Var?"],currentDirectory:currentDirectory})
               break
             default:
+              collection.updateOne({userID:new ObjectId(userId)},{
+                $set: { 'log': [...log,`cat: cannot access '${args[1]}': No such file or directory`] }
+              })
+              res.json({result:[...log,`cat: cannot access '${args[1]}': No such file or directory`],currentDirectory:currentDirectory})
               break
 
 
           }
           break;
         default:
-          res.json({result:`Command not found: ${args[0]}`});
+          collection.updateOne({userID:new ObjectId(userId)},{
+            $set: { 'log': [...log,`Command not found: ${args[0]}`] }
+          })
+          res.json({result:[...log,`Command not found: ${args[0]}`]});
       }
       break
       case 3:
       switch (args[0]) {
       case 'ls':
-          res.json({result:'-flag.txt'});
+        collection.updateOne({userID:new ObjectId(userId)},{
+          $set: { 'log': [...log,`-flag.txt`] }
+        })
+          res.json({result:[...log,`-flag.txt`],currentDirectory:currentDirectory});
 
 
         break;
       case 'cat':
         // Implement cat logic here to display file contents.
-        if(command === 'cat -- -flag.txt'|| 'cat "-flag.txt"'){
-          res.json({result:"TIMTAL={S€4RCH_P4R4M€TERS}"})
+        if(command === 'cat -- -flag.txt'|| command== 'cat "-flag.txt"'){
+          collection.updateOne({userID:new ObjectId(userId)},{
+            $set: { 'log': [...log,`TIMTAL={S€4RCH_P4R4M€TERS}`] }
+          })
+          res.json({result:[...log,`TIMTAL={S€4RCH_P4R4M€TERS}`],currentDirectory:currentDirectory})
+        }else{
+          collection.updateOne({userID:new ObjectId(userId)},{
+            $set: { 'log': [...log,`cat: ${args[1]}: No such file or directory`] }
+          })
+          res.json({result:[...log,`cat: ${args[1]}: No such file or directory`],currentDirectory:currentDirectory})
         }
         break;
       default:
-        res.json({result:`Command not found: ${args[0]}`});
+        res.json({result:`Command not found: ${args[0]}`,currentDirectory:currentDirectory});
     }
     break;
       default:
@@ -510,24 +615,20 @@ app.post('/execute-command', authenticate, async (req, res) => {
 });
 
 app.post('/reset-terminal', authenticate, async (req, res) => {
-  const {userID} = req.body
   const token = req.headers.authorization.split(' ')[1]
   const decoded = jwt.decode(token);
   const userId = decoded.userId
   const db = await connect();
   const collection = db.collection('userAuth');
   const cursor = await collection.findOne({"_id": new ObjectId(userId) })
-  const confirmer = cursor.token
-  if(confirmer===token){
+
     const terminalcollection = db.collection('terminalData');
     terminalcollection.updateOne({userID:new ObjectId(userId)},{$set:{
       log:[],
       currentDir:'~'
     }})
     return res.status(200).json({message:'success'})
-  }else{
-    return res.status(401).json({message:'Token ve kullanici eslesmedi'})
-  }
+
 
 
 });

@@ -1,4 +1,3 @@
-import { Bar } from "react-chartjs-2";
 import {
   BarElement,
   CategoryScale,
@@ -8,8 +7,9 @@ import {
   Title,
   Tooltip,
 } from "chart.js";
-import Navbar from "../Navbar/Navbar";
 import { useEffect, useState } from "react";
+import { Bar } from "react-chartjs-2";
+import Navbar from "../Navbar/Navbar";
 import "./Scoreboard.css";
 
 function Scoreboard() {
@@ -26,6 +26,11 @@ function Scoreboard() {
     })
       .then((response) => response.json())
       .then((data) => {
+        if(data.message=='Invalid token'){
+          localStorage.removeItem('token')
+          sessionStorage.removeItem('token')
+          window.location = `/`
+        }
         setScoreboard(data.points);
       });
   }, []);

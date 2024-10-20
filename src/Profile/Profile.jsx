@@ -1,7 +1,7 @@
-import { LockIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import "./profile.css";
+import ProfilePic from "./ProfilePic";
 
 function Profile() {
     const [active, setActive] = useState(1)
@@ -97,6 +97,11 @@ function Profile() {
     })
       .then((response) => response.json())
       .then((data) => {
+        if(data.message=='Invalid token'){
+          localStorage.removeItem('token')
+          sessionStorage.removeItem('token')
+          window.location = `/`
+        }
         setData(data)
         console.log(data)
       });
@@ -120,13 +125,13 @@ function Profile() {
     useEffect(()=>{
         switch(active){
             case 1:
-                setTimeout(()=>{setSec1({boxShadow:'0px 0px 20px #a5dfdb'})})
+                setTimeout(()=>{setSec1({color:'white'})})
                 break
             case 2:
-                setTimeout(()=>{setSec2({boxShadow:'0px 0px 20px #a5dfdb'})})
+                setTimeout(()=>{setSec2({color:'white'})})
                 break
             case 3:
-                setTimeout(()=>{setSec3({boxShadow:'0px 0px 20px #a5dfdb'})})
+                setTimeout(()=>{setSec3({color:'white'})})
                 break
             default:
                 break
@@ -189,20 +194,8 @@ function Profile() {
                 </div>: active===3 ? <li id="profilePicList">
                  {avatarWardrobe ? <>
                   {avatarWardrobe.map(avatar => 
-  avatar[1] === true ? 
-    <img 
-      src={`/images/avatars/${avatar[0]}-penguin.png`} 
-      alt={`${avatar[1]}`}
-    /> 
-    : 
-    <div className="avatar-container">
-      <img 
-        src={`/images/avatars/${avatar[0]}-penguin.png`} 
-        alt={`${avatar[1]}`}
-        className="avatar"
-      />
-      <LockIcon size={128} className="lock-icon" />
-    </div>
+                  <ProfilePic name={avatar[0]} unlocked={avatar[1]}/>
+ 
 )}
 
                  </>:<p style={{color:"white"}}>Avatarlar Alınamadı</p>}

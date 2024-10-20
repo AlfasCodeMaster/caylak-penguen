@@ -30,7 +30,17 @@ function Challenges() {
     })
       .then((response) => response.json())
       .then((data) => {
-        setChallenges(data.challenges);
+        if(data.message=='Invalid token'){
+          localStorage.removeItem('token')
+          sessionStorage.removeItem('token')
+          window.location = `/`
+        }
+        data.challenges.forEach((challange,index)=>{
+          challange.index = index
+        })
+        console.log(data.challenges)
+        setChallenges(data.challenges)
+        
       });
   }, []);
 
@@ -165,8 +175,8 @@ function Challenges() {
         gridChallenges
           .map((challengeData, index) => (
             <ChallengeCard
-              key={index}
-              index={index}
+              key={challengeData.index}
+              index={challengeData.index}
               isCompleted={challengeData.completed}
               isUnlocked={challengeData.unlocked}
               category={challengeData.category}
@@ -188,8 +198,8 @@ function Challenges() {
         .filter(challengeData => challengeData.category === categories[active] )
         .map((challengeData, index) => (
           <ChallengeCard
-          key={index}
-          index={index}
+          key={challengeData.index}
+          index={challengeData.index}
           isCompleted={challengeData.completed}
           isUnlocked={challengeData.unlocked}
           category={challengeData.category}
@@ -210,8 +220,8 @@ function Challenges() {
         .filter(challengeData => challengeData.difficulty === diffs[diff] )
         .map((challengeData, index) => (
           <ChallengeCard
-          key={index}
-          index={index}
+          key={challengeData.index}
+          index={challengeData.index}
           isCompleted={challengeData.completed}
           isUnlocked={challengeData.unlocked}
           category={challengeData.category}
@@ -234,8 +244,8 @@ function Challenges() {
         } )
         .map((challengeData, index) => (
           <ChallengeCard
-          key={index}
-          index={index}
+          key={challengeData.index}
+          index={challengeData.index}
           isCompleted={challengeData.completed}
           isUnlocked={challengeData.unlocked}
           category={challengeData.category}
