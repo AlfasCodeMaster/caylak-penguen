@@ -54,10 +54,15 @@ function Login() {
               onSubmit={"sa"}
               name="password"
             ></input>
+            <div className="flexrow">
             <button id="submit" type="submit">Giriş Yap</button>
+<button id="submit"><a href="/#sign-up" className="noacclink">Kayıt Ol</a></button>
+            
+            </div>
+           
             {fail ? <p className="loginError">Hatalı Giriş!</p> : <></>}
           </form>
-          <p className="noacc">Hesabın mı yok? <a href="/#sign-up" className="noacclink">Kayıt Ol</a></p>
+          <p> </p>
         </div>
       </div>
     </div>

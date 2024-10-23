@@ -1,8 +1,8 @@
-      @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-*{
-  font-family: "Press Start 2P", system-ui;
-  font-weight: 400;
-  font-style: thin;
+@font-face {
+  font-family: 'Minecraftia';
+  src: url('C:\Users\ali_asaf_goker\Documents\GitHub\caylak-penguen\public\fonts\Minecraftia-Regular.ttf') format('truetype'); /* Yolunu dosyanın konumuna göre ayarla */
+  font-weight: normal;
+  font-style: normal;
 }
 
 
@@ -14,6 +14,7 @@
     width: 100%; /* Set the desired width */
     height: 400px; /* Set the desired height */
     overflow-x: hidden;
+    font-family: 'Minecraftia', sans-serif;
     background-color: rgba(0, 0, 0, 0.35);
 }
 

@@ -89,7 +89,7 @@ function Signup() {
         <h1 id="main-header">Bayrak Sende 101</h1>
       </div>
       <div id="loginRight">
-        <div id="loginContainer">
+        <div id="signupContainer">
           <h2>CTF Kayıt</h2>
           <form onSubmit={submitHandler}>
             <input
