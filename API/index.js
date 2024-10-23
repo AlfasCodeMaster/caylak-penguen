@@ -68,7 +68,7 @@ app.post('/login', async (req, res) => {
   const challengeCollectionObject = await challengeCollection.findOne({ "userID": user._id });
 
     const challengeCollectionObjectID = challengeCollectionObject._id.toHexString();
-    const token = jwt.sign({ userId: user._id.toHexString() }, secretKey, {
+    const token = jwt.sign({ userId: user._id.toHexString(),username:username }, secretKey, {
       expiresIn: '2h',
     });
     res.json({ message: 'Login Successful', token: token });
@@ -605,10 +605,11 @@ app.post('/execute-command', authenticate, async (req, res) => {
         }
         break;
       default:
-        res.json({result:`Command not found: ${args[0]}`,currentDirectory:currentDirectory});
+        res.json({result:[...log,`Command not found: ${args[0]}`],currentDirectory:currentDirectory});
     }
     break;
       default:
+        res.json({result:[...log,`Command not found: ${args[0]}`],currentDirectory:currentDirectory});
         break
   }
 

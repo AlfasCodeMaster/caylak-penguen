@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Minecraftia';
-  src: url('C:\Users\ali_asaf_goker\Documents\GitHub\caylak-penguen\public\fonts\Minecraftia-Regular.ttf') format('truetype'); /* Yolunu dosyanın konumuna göre ayarla */
+  src: url('/public/fonts/Minecraftia-Regular.ttf') format('truetype'); /* Yolunu dosyanın konumuna göre ayarla */
   font-weight: normal;
   font-style: normal;
 }
@@ -51,7 +51,7 @@
 }
 .button{
   color:white;
-  padding: .5rem;
+  padding: .5rem .5rem 0 .5rem;
   background-color: #CCA471;
   cursor: pointer;
   border: 4px solid #523713;
@@ -59,7 +59,6 @@
 }
 .button:hover{
   color:gainsboro;
-  padding: .5rem;
   transition: background-color .2s;
   background-color: #bb9360;
   

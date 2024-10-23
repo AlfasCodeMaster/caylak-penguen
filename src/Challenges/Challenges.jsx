@@ -53,12 +53,11 @@ function Challenges() {
     const [style4,setStyle4] = useState({})
 
     const [diff, setDiff] = useState(0)
-  const diffs = ["Tümü","Kolay","Orta","Zor","Ruh Emici"]
+  const diffs = ["Tümü","Kolay","Orta","Zor"]
   const [diff1,setdiff1] = useState({})
     const [diff2,setdiff2] = useState({})
     const [diff3,setdiff3] = useState({})
     const [diff4,setdiff4] = useState({})
-    const [diff5,setdiff5] = useState({})
 
     useEffect(()=>{
         switch(active){
@@ -95,9 +94,6 @@ function Challenges() {
               break
           case 3:
               setTimeout(()=>{setdiff4({backgroundColor:'#aa8250'})})
-              break
-          case 4:
-              setTimeout(()=>{setdiff5({backgroundColor:'#aa8250'})})
               break
           default:
               break
@@ -144,9 +140,6 @@ function Challenges() {
           case 0:
               setTimeout(()=>{setdiff1({})})
               break
-          case 4:
-              setTimeout(()=>{setdiff5({})})
-              break
           default:
               break
       }
@@ -166,7 +159,7 @@ function Challenges() {
       <ul className='type-button-group'><li className='button' value={0} style={style0} onClick={handleClick}>Tümü</li><li className='button' value={1} style={style1} onClick={handleClick}>Web</li><li className='button' value={2} style={style2} onClick={handleClick}>OSINT</li><li className='button' value={3} style={style3} onClick={handleClick}>Kriptografi</li><li className='button' value={4} style={style4} onClick={handleClick}>Terminal</li></ul>
       </div>
       <div className="challenge-type-buttons">
-      <ul className='type-button-group'><li className='button' value={0} style={diff1} onClick={handleDiff}>Tümü</li><li className='button' value={1} style={diff2} onClick={handleDiff}>Kolay</li><li className='button' value={2} style={diff3} onClick={handleDiff}>Orta</li><li className='button' value={3} style={diff4} onClick={handleDiff}>Zor</li><li className='button' value={4} style={diff5} onClick={handleDiff}>Ruh Emici</li></ul>
+      <ul className='type-button-group'><li className='button' value={0} style={diff1} onClick={handleDiff}>Tümü</li><li className='button' value={1} style={diff2} onClick={handleDiff}>Kolay</li><li className='button' value={2} style={diff3} onClick={handleDiff}>Orta</li><li className='button' value={3} style={diff4} onClick={handleDiff}>Zor</li></ul>
       </div>
       <div className="challenge-grid">
       {gridChallenges &&

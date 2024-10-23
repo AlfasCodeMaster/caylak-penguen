@@ -1,6 +1,6 @@
-import "./Navbar.css";
 import { LogOutIcon } from "lucide-react";
-import { useState,useEffect } from "react";
+import { useEffect, useState } from "react";
+import "./Navbar.css";
 
 function Navbar() {
   const [token, setToken] = useState(sessionStorage.getItem('token'));
@@ -92,7 +92,7 @@ function Navbar() {
        
       </div>
 <div>
-{sessionStorage.getItem('token')!=null ? <button className="navLinkButton" onClick={logout}><LogOutIcon color="white" size={64}></LogOutIcon></button>:<></>}
+{sessionStorage.getItem('token')!=null ? <button className="navLinkButton" onClick={logout}><LogOutIcon size={64}></LogOutIcon></button>:<></>}
         
       </div>
       

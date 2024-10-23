@@ -1,7 +1,7 @@
 /* Base64 image for the background */
 @font-face {
   font-family: 'Minecraftia';
-  src: url('C:\Users\ali_asaf_goker\Documents\GitHub\caylak-penguen\public\fonts\Minecraftia-Regular.ttf') format('truetype'); /* Yolunu dosyanın konumuna göre ayarla */
+  src: url('/public/fonts/Minecraftia-Regular.ttf') format('truetype'); /* Yolunu dosyanın konumuna göre ayarla */
   font-weight: normal;
   font-style: normal;
 }

@@ -220,7 +220,8 @@ button.flagSubmit:hover {
   color: white;
   word-break: keep-all;
   overflow-wrap: hidden;
-  margin: 8px 8px 8px 16px;
+  margin: 8px 8px 0 8px;
+  line-height: 24px;
   overflow: hidden;
   width: 25rem;
 

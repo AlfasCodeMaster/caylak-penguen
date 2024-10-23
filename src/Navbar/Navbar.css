@@ -77,7 +77,7 @@
   gap: 2rem;
 }
 .navBrand {
-  background: linear-gradient(90deg, #3aa7f6 0%, #577471 90%);
+  background: linear-gradient(90deg, #814b46 0%, #5a3733 90%);
   font-weight: normal;
   -webkit-background-clip: text;
   background-clip: text;
@@ -106,7 +106,7 @@
   border-radius: 10px;
 }
 .navLinkButton:hover {
-  color: black;
+  color: #5a3733;
 }
 
 .logout{

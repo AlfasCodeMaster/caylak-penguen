@@ -8,6 +8,17 @@ function Terminal() {
   const [output, setOutput] = useState('');
   const [currentLevel,setCurrentLevel] = useState(sessionStorage.getItem(`level`))
 
+  const parseJwt = (token) => {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+}
+const [username,setUsername] = useState(parseJwt(sessionStorage.getItem('token')).username)
+
   const resetTerm = () => {
     const token = sessionStorage.getItem('token')
     fetch("http://127.0.0.1:3001/reset-terminal", {
@@ -206,7 +217,7 @@ function Terminal() {
       { output && output.map((output,key)=>{
         return <li key={key}><code>{output}</code></li>
       })}</ul>
-        <div id='input' style={{display:'flex',flexDirection:'row'}}><pre>{`user@mergen:${currentDirectory}$ 
+        <div id='input' style={{display:'flex',flexDirection:'row'}}><pre className='prem'>{`${username}@mergen:${currentDirectory}$ 
 `}</pre>
         <input
         className='commandInput'
