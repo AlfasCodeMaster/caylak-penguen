@@ -12,11 +12,21 @@ function Challenges() {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type':'application/json'
-      },
+      }
     })
       .then((response) => response.json())
       .then((data) => {
-        setChallenges(data.challenges);
+        if(data.message=='Invalid token'){
+          localStorage.removeItem('token')
+          sessionStorage.removeItem('token')
+          window.location = `/`
+        }
+        data.challenges.forEach((challange,index)=>{
+          challange.index = index
+        })
+        console.log(data.challenges)
+        setChallenges(data.challenges)
+        
       });
   };
   useEffect(() => {
