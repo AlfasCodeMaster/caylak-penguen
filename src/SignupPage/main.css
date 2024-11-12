@@ -46,10 +46,7 @@
   
   #main-header {
     height: 100%;
-    background: linear-gradient(90deg, #6207ff, #7a0359);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
+    color: white;
     font-size: 4rem;
     display: inline-block;
     margin-top: 150px;

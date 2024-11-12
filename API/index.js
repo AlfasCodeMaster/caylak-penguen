@@ -466,7 +466,7 @@ app.post('/execute-command', authenticate, async (req, res) => {
         }
         break;
       default:
-        res.json({result:`Command not found: ${args[0]}`});
+        res.json({result:[...log,`Command not found: ${args[0]}`],currentDirectory:currentDirectory});
     }
     break;
     case 2:

@@ -163,7 +163,7 @@ function Challenges() {
     
     <div style={{ padding: "0px" }}  id="challenges-main">
       <div>
-        <h1 id="challengeHeader">Meydan Okumalar</h1>
+        <h1 id="challengeHeader">Senaryolar</h1>
       </div>
       <div className="challenge-type-buttons">
       <ul className='type-button-group'><li className='button' value={0} style={style0} onClick={handleClick}>Tümü</li><li className='button' value={1} style={style1} onClick={handleClick}>Web</li><li className='button' value={2} style={style2} onClick={handleClick}>OSINT</li><li className='button' value={3} style={style3} onClick={handleClick}>Kriptografi</li><li className='button' value={4} style={style4} onClick={handleClick}>Terminal</li></ul>

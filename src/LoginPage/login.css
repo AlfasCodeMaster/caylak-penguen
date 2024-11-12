@@ -27,10 +27,7 @@ body {
 
 #main-header {
   height: 100%;
-  background: linear-gradient(90deg, #472d84, #7104b4);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
+  color: white;
   font-size: 4rem;
   display: flex;
   justify-content: center;

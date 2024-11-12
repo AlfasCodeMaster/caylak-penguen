@@ -27,6 +27,9 @@ function ChallengeCard(props) {
     if( props.isUnlocked==false){
       mainRef.current.classList.add('challenge-card-body-disabled');
     }
+    if( props.isCompleted==true){
+      mainRef.current.classList.add('challenge-card-body-completed');
+    }
     generateRandomCharacters();
 
     // Set an interval to generate random characters every 2 seconds (you can adjust the interval)
